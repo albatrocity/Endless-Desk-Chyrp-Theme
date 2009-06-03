@@ -1,0 +1,53 @@
+{% extends "layouts/default.twig" %}
+
+{% block content %}
+<h2>${ title | translate("contact") }</h2>
+
+{% if contact.contact_complete %}
+    ${ "Your message has been sent" | translate("contact") }
+{% else %}
+<form id="contact_edit" class="split" action="{% url "contact" %}" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                <p>
+                    ${ settings.introduction }
+                </p>
+                {% if error %}
+                <p class="contact error">
+                    {% if error.from %}
+                        ${ "Please provide a name" | translate("contact") }<br />
+                    {% endif %} 
+                    {% if error.email %}
+                        ${ "Invalid email address" | translate("contact") }<br /> 
+                    {% endif %} 
+                    {% if error.message %}
+                        ${ "You didn't put anything in your message" | translate("contact") } 
+                    {% endif %} 
+                </p>
+                {% endif %}
+                {% if sent %}
+                <p class="contact good">
+                    ${ "Your message has been sent. Thank you for your feedback." | translate("contact") }
+                </p>
+                {% else %}
+                <fieldset>
+                    <p>
+                        <label for="from">${ "Your name" | translate("contact") }</label>
+                        <input class="text" type="text" name="from" value="${ from | escape }" id="from" />
+                    </p>
+                    <p>
+                        <label for="email">${ "Your email address" | translate("contact") }</label>
+                        <input class="text" type="text" name="email" value="${ email | escape }" id="email" />
+                    </p>
+                    <p>
+                        <label for="message">${ "Your Message" | translate("contact") }</label>
+                        <textarea rows="5" cols="40" name="message" id="message">${ message }</textarea>
+                    </p>
+                    <p>
+                        <button type="submit" name="update" class="yay"><img src="images/icons/success.png" alt="" />${ "Send message" | translate("contact") }</button>
+                    </p>
+                    <input type="hidden" name="hash" value="$site.secure_hashkey" id="hash" />
+                </fieldset>
+                {% endif %}
+</form>
+{% endif %}
+
+{% endblock %}

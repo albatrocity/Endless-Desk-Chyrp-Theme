@@ -1,0 +1,33 @@
+			<div id="sidebar">
+				<form action="$site.url" method="get" accept-charset="utf-8">
+					<fieldset>
+						<input type="hidden" name="action" value="search" id="action" />
+						<input type="text" id="search" name="query" value="${ GET.query | escape }" />
+					</fieldset>
+				</form>
+${ trigger.call("sidebar") }
+{% if tags %}
+				<h1>${ "Tags" | translate }</h1>
+				<ul id="tags_list">
+{% for tag in tags %}
+					<li>
+						<a href="{% url "tag/" ~ tag.url ~ "/" %}">$tag.name</a>
+						<span class="sub">($tag.popularity)</span>
+					</li>
+{% endfor %}
+					<li><a href="{% url "tags/" %}">${ "All &rarr;" | translate }</a></li>
+				</ul>
+{% endif %}
+{% if theme.archives_list %}
+				<h1>${ "Archives" | translate }</h1>
+				<ul>
+{% for archive in theme.archives_list %}
+					<li>
+						<a href="$archive.url">${ archive.when | strftime("%B %Y" | translate) }</a>
+						<span class="sub">($archive.count)</span>
+					</li>
+{% endfor %}
+				</ul>
+{% endif %}
+<br class="clear"/>
+			</div>

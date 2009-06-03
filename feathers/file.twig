@@ -1,0 +1,21 @@
+{% extends "content/post.twig" %}
+
+{% block content %}
+                        <h2>${ post.title }</h2>
+                        <div class="file">
+                            <div class="file-icon">
+                                <img src="${ feathers['file'].icon(post) }" alt="Icon"/>
+                            </div>
+                            <div class="file-name">
+                                ${ post.filename }
+                            </div>
+                            <div class="file-link">
+                                <a href="${ feathers['file'].path(post) }">Download &rarr;  (${ feathers['file'].size(post) })</a>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        {%if post.caption %}
+                            ${ post.caption | read_more }
+                        {% endif %}
+
+{% endblock %}
