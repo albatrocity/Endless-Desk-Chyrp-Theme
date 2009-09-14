@@ -1,12 +1,10 @@
-h2. Master Plumber theme for Chyrp 2.x
+h2. Endless Desk theme for Chyrp 2.x
 
 by "Ross Brown":http://rossisbrown.com
 
 Feel free to use this as a basis of theme development. I only ask that you don't just carbon clone my site. It's not put together extremely logically, and there won't be any documentation.
 
 Built for the wonderful "Chyrp":http://chyrp.net blogging engine.
-
-If you like this, you might want to check out the companion "Espresso":http://macrabbit.com/espresso "theme":http://github.com/albatrocity/Master-Plumber-Espresso-Theme/.
 
 (The MIT License)
 
